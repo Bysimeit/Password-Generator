@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>Password Generator | Bysimeit</title>
+	</head>
+	<body>
+		Password length : <input type="number" name="longueur" id="ici"><br><br>
+		<input name="password" disabled="disabled" id="password" type="text">
+    	<input type="button" name="generer" value="Generate" onclick="javascript:generateur_de_MDP('password');">
+        <a href="../index.html"><p style="margin-top: 50px;">Return to the menu</p></a>
+
+		<script type="text/javascript">
+    		function generateur_de_MDP(champ_cible)
+    		{
+        		var ok = 'azertyupqsdfghjkmwxcvbn1234567890AZERTYUPQSDFGHJKMWXCVBN&é§è!çà-$^µù=+*/;,:_';
+        		var pass = '';
+        		var longueur = document.getElementById("ici").value;
+        		for(i=0;i<longueur;i++)
+        		{
+            		var wpos = Math.round(Math.random()*ok.length); 
+            		pass+=ok.substring(wpos,wpos+1); 
+        		}
+        		document.getElementById(champ_cible).value = pass;
+    		}
+		</script>
+	</body>
+</html>

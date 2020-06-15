@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="fr">
+	<head>
+		<meta charset="utf-8">
+		<title>Password Generator | Bysimeit</title>
+	</head>
+	<body>
+		Longeur du mot du passe : <input type="number" name="longueur" id="ici"><br><br>
+		<!--L'input "number" permet d'inscrire uniquement des chiffres pour que l'utilisateur décide de la longeur de son mot de passe.-->
+		<input name="password" disabled="disabled" id="password" type="text">
+		<!--L'input "password" permet d'afficher les mots de passe générer, la balise "disabled" permet que l'utilisateur modifie le champ généré.-->
+    	<input type="button" name="generer" value="Générer" onclick="javascript:generateur_de_MDP('password');"> 
+    	<!--En appuyant/cliquant sur le bouton, on demande à la fonction "generateur_de_MDP" en javascript de s'éxécuter. -->
+        <a href="../index.html"><p style="margin-top: 50px;">Retourner au menu</p></a>
+
+		<script type="text/javascript">
+    		function generateur_de_MDP(champ_cible)
+    		{
+        		var ok = 'azertyupqsdfghjkmwxcvbn1234567890AZERTYUPQSDFGHJKMWXCVBN&é§è!çà-$^µù=+*/;,:_'; //Liste de caractères où le Math.random va piocher.
+        		var pass = '';
+        		var longueur = document.getElementById("ici").value; //Va récupérer la valeur inscrite dans l'input "longueur".
+        		for(i=0;i<longueur;i++) //Nombre compris entre 0 et le nombre de caractère que l'utilisateur à demande dans sa génération de mot de passe (input :"id=ici").
+        		{
+            		var wpos = Math.round(Math.random()*ok.length); 
+            		//Math.round = Retourne la valeur d'un nombre arrondi à l'entier le plus proche, la valeur est arrondie au nombre prochain le plus grand. 
+            		//Math.random = Renvoie un nombre flottant pseuso-aléatoire compris dans l'intervalle, cela choisi un nombre qui par après vas mutliplier celui-ci pour en avoir un autre ce qui permet d'avoir cet aspet aléatoire dans le mot de passe.
+            		pass+=ok.substring(wpos,wpos+1); 
+            		//Retourne une sous-chaîne de la chaîne courante, entre un indice de début et un indice de fin. (extrait des caractères de la chaîne courante)
+        		}
+        		document.getElementById(champ_cible).value = pass; //Affichage de la valeur obtenue dans la fonction, appel la valeur "champ_cible" pour après être afficher sur la page html.
+    		}
+		</script>
+	</body>
+</html>
